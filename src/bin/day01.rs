@@ -67,8 +67,8 @@ impl Dial {
     #[inline(always)]
     fn rotate(&mut self, step: u16, left: bool) -> Option<u16> {
         let clicks = Self::NB_CLICK as u16;
-        let mut rolls = (step as u16) / clicks;
-        let step = (step as u16 % clicks) as u8;
+        let mut rolls = step / clicks;
+        let step = (step % clicks) as u8;
 
         let old = self.dial;
         self.dial = if left {

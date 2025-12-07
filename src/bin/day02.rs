@@ -13,13 +13,13 @@ impl Ranges {
                 );
             }
         }
-        return Self(ranges);
+        Self(ranges)
     }
 }
 
 fn solve_part1(ranges: Ranges) -> u64 {
     let now = Instant::now();
-    let mut buf = [0u8; 20]; // stack buffer, reused
+    let mut buf = [0u8; 20];
     let mut acc = 0;
     for range in ranges.0 {
         for num in range {
@@ -46,7 +46,7 @@ fn solve_part1(ranges: Ranges) -> u64 {
 fn solve_part2(ranges: Ranges) -> u64 {
     let now = Instant::now();
     let mut acc = 0;
-    let mut buf = [0u8; 20]; // stack buffer, reused
+    let mut buf = [0u8; 20];
     for range in ranges.0 {
         for num in range {
             let num_str = to_decimal_buf(num, &mut buf);
@@ -79,7 +79,6 @@ fn main() {
 }
 
 fn to_decimal_buf(mut n: u64, out: &mut [u8; 20]) -> &str {
-    // Write digits from the end backwards
     let mut i = 20;
     loop {
         i -= 1;
@@ -89,7 +88,6 @@ fn to_decimal_buf(mut n: u64, out: &mut [u8; 20]) -> &str {
             break;
         }
     }
-    // Convert to &str
     core::str::from_utf8(&out[i..]).unwrap()
 }
 
