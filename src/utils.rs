@@ -34,6 +34,35 @@ impl<'a> Iterator for LineIterator<'a> {
     }
 }
 
+#[inline(always)]
+pub fn parse_u16(bytes: &[u8]) -> u16 {
+    let mut n = 0u16;
+    for b in bytes {
+        n = n * 10 + (b - b'0') as u16;
+    }
+    n
+}
+
+#[inline(always)]
+pub fn parse_u32(bytes: &[u8]) -> u32 {
+    let mut n = 0u32;
+    for b in bytes {
+        n = n * 10 + (b - b'0') as u32;
+    }
+    n
+}
+
+#[inline(always)]
+pub fn parse_u64(bytes: &[u8]) -> u64{
+    let mut n = 0u64;
+    for b in bytes {
+        n = n * 10 + (b - b'0') as u64;
+    }
+    n
+}
+
+
+
 #[cfg(test)]
 mod tests {
     use crate::utils::LineIterator;
